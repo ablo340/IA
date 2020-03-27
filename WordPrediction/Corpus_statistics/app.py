@@ -3,7 +3,7 @@ import json
 import time
 
 
-def inputCorpus(word):
+def inputCorpus(word):   # use python fct Counter() to update ==> delete the fct
     if word in corpus:
         corpus[word] += 1
     else:
