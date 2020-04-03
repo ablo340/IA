@@ -22,7 +22,7 @@ def sentences(file):
 
 def jsoncorpus(dic):
     with open('corpus.json', 'w') as json_file:  # result as json file
-        json.dump(dic, json_file)
+        json.dump(dic, json_file, indent=2)
         print("Waiting...")
         time.sleep(2)
         print("Your Json is created")
@@ -44,12 +44,10 @@ def takeSecond(elem):
 
 if __name__ == '__main__':
     # liste contenant des sous liste de chaque mot avec les pads <s> et </s> pour le debut et la fin de phrase
-    preprocessed = [pad_both_ends(s.split(' '), n=2) for s in sentences('book')]
+    preprocessed = [pad_both_ends(s.strip(' ').split(' '), n=2) for s in sentences('book')]
 
-    tokens = []  # avec flatten() element dans sous liste de preprocessed extrait pour faire une liste
-    for word in list(flatten(preprocessed)):
-        if word is not '':
-            tokens.append(word)
+    # avec flatten() element dans sous liste de preprocessed extrait pour faire une liste
+    tokens = list(flatten(preprocessed))
 
     fd = FreqDist(tokens)  # unigramme (dict avec chaque mot et sa frequence
 

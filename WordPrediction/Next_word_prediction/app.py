@@ -15,7 +15,7 @@ def preparecorpus(file):
 
     txt = [sentence.strip(' ') for sentences in list_sentences for sentence in sentences]
     txt = map(str.lower, txt)
-    return [sentence.split(' ') for sentence in txt]
+    return [s.split(' ') for s in txt]
 
 
 def preprocess(sentence_list):
@@ -37,6 +37,10 @@ if __name__ == '__main__':
           "Veuillez ecrire svp")
     while True:
         word = input(' '.join(sentence) + ' ')
+
+        if word == ' ':
+            break
+
         sentence.append(word)
         next_word = model.generate(3, text_seed=[word], random_seed=2)  # list of 3 next word guessed
         if '<s>' in next_word:
@@ -45,10 +49,8 @@ if __name__ == '__main__':
         if '</s>' in next_word:
             next_word.remove('</s>')
 
-        print(next_word[0])  # next word
+        print(next_word)  # next word
 
-        if word == ' ':
-            break
 
     print("votre phrase est : " + " ".join(sentence))
 

@@ -32,7 +32,7 @@ training(b_t, v)
 
 # preprocess the bigram model (method 2 more direct, to avoid re-creating the text in memory)
 def preprocess(sentence_list):
-    b_train, vocabu = padded_everygram_pipeline(2, sentence_list)  # 2 for bigram
+    b_train, vocabu = padded_everygram_pipeline(4, sentence_list)  # 2 for bigram
     return b_train, vocabu  # return the bigram model
 
 
@@ -42,13 +42,14 @@ def training(t, v):
 
 if __name__ == '__main__':
     b_training, vocabulary = preprocess(preprocessText(text))  # get bigram training and its vocabulary
-
     training(b_training, vocabulary)  # fit/adjust/improve the model
+    """
+    p(chinese/love) = c(love chinese)/c(love) = 1 / 2 = 0.5
+    p(chinese/i love) = c(i love chinese) / c(i love) = 1 / 1 = 1
+    p(food/i love chinese) = c(i love chinese food) / c(i love chinese) = 1 / 1 = 1
+    """
     print(model.score('chinese', ['love']))  # get the likelihood of 'love chinese' (bigram model)
     print(model.score('chinese', ['i', 'love']))  # get the likelihood of 'i love chinese' (trigram model)
     print(model.score('food', ['i', 'love', 'chinese']))  # get the likelihood of 'i love chinese food' (4-gram model)
 
-    tex = 'japon love'
-    test = list(bigrams(flatten(preprocessText(tex))))  # preprocess test
-    print(test)
-    print(model.perplexity(test))  # perplexity of the model
+

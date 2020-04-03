@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     print('Analysing', args.file)
 
-    book = open('book', "r")
+    book = open(args.file, "r")
     sentences = book.readlines()  # list of all sentences in file
     words = split(sentences)  # list of all words in file
     for mot in words:
