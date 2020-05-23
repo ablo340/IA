@@ -26,4 +26,4 @@ Cette commande avec la commande optionelle --out sauvegarde le corpus dans un fi
 Ce programme résout le probleme de carrée magique avec ***python-constraint***
 
 ## CSP represention problem
-Ce programme propose des classes pour representer un CSP et le résout.
+Ce programme propose des classes pour representer un CSP et le résout avec l'algorithme backtracking.
