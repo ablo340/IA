@@ -25,10 +25,10 @@ class AllDiff(Constraint):
     def is_satisfied(self):
         values = []
         for variable in self.variables:
-            if variable.is_assigned():
-                values.append(variable.value)
+            if variable.is_assigned():  # for each variable assigned
+                values.append(variable.value)  # put all values into the list
 
-        return len(set(values)) == len(values)
+        return len(set(values)) == len(values)  # check if the size change
 
     def __repr__(self):
         return 'AllDiff({})'.format([v.name for v in self.variables])

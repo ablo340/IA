@@ -34,26 +34,6 @@ def magic_square(n):
 
 
 if __name__ == "__main__":
-
-    """# define variables in their domain
-    problem.addVariables(range(0, 9), range(1, 9+1))
     
-    # Constraints
-    problem.addConstraint(AllDifferentConstraint(), range(0, 9))
-    
-    problem.addConstraint(ExactSumConstraint(15), [0, 4, 8])  # diagonal constraint
-    problem.addConstraint(ExactSumConstraint(15), [2, 4, 6])  # diagonal constraint
-    
-    for row in range(3):  # rows constraint
-        problem.addConstraint(ExactSumConstraint(15),
-                              [row*3+i for i in range(3)])
-    
-    for col in range(3):  # cols constraint
-        problem.addConstraint(ExactSumConstraint(15),
-                              [col+3*i for i in range(3)])
-    
-    # Solutions
-    solutions = problem.getSolutions()"""
-
-    solutions = magic_square(3)  # magic square 3x3
-    print(solutions)
+    # magic square 3x3
+    print(magic_square(3))

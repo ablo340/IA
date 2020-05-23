@@ -44,23 +44,25 @@ class Problem():
         return all(v.is_assigned() for v in self.variables) and all(c.is_satisfied() for c in self.constraints)
 
     def solve(self):
-        while not self.is_solved():
-            i = 0
-            while i < len(self.variables):  # for each variables
-                c = 0
-                while not self.variables[i].is_assigned():  # while no assigned
-                    if c < len(self.variables[i].domain):
-                        self.variables[i].value = self.variables[i].domain[c]  # get the values in his domain
+        i = 0  # for selecting a variable
 
-                        if not all(c.is_satisfied() for c in self.constraints):  # if constraints violated
-                            self.variables[i].value = None  # reset current value
-                            c += 1
-                    else:
-                        i -= 1  # backtracking
-                        c = self.variables[i].value + 1  # last value of previous variable + 1
-                        self.variables[i].value = None  # change previous value
+        while i < len(self.variables):  # for each variables
+            c = 0  # to choose a value in domain of the current variable
 
-                i += 1
+            while not self.variables[i].is_assigned():  # while no assigned
+
+                if c < len(self.variables[i].domain):  # check if there is a possible value of the current variable
+                    self.variables[i].value = self.variables[i].domain[c]  # get the values in his domain
+
+                    if not all(c.is_satisfied() for c in self.constraints):  # if constraints violated
+                        self.variables[i].value = None  # reset current value
+                        c += 1
+                else:
+                    i -= 1  # backtracking
+                    c = self.variables[i].domain.index(self.variables[i].value) + 1  # last value of previous variable+1
+                    self.variables[i].value = None  # change previous value
+
+            i += 1
 
         return ['{} : {}'.format(v.name, v.value) for v in self.variables]
 
