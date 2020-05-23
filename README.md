@@ -19,3 +19,11 @@ Cette commande afficher le corpus sur la sortie standard
 
 Cette commande avec la commande optionelle --out sauvegarde le corpus dans un fichier texte.
 > python app.py --out <nom_fichier> file
+
+## Constraint Satisfaction Problem
+
+### Magic Square
+Ce programme résout le probleme de carrée magique avec ***python-constraint***
+
+## CSP represention problem
+Ce programme propose des classes pour representer un CSP et le résout.
