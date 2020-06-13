@@ -13,7 +13,7 @@ barley = model.NewIntVar(0, area+1, 'Y')
 # Define constraints
 model.Add(100*corn + 200*barley <= budget)
 model.Add(10*corn + 30*barley <= numb_worker)
-model.Add(corn + barley <= numb_worker)
+model.Add(corn + barley <= area)
 
 # objective function
 model.Maximize(50*corn + 120*barley)
@@ -25,5 +25,5 @@ status = solver.Solve(model)
 if status == cp_model.OPTIMAL:
     print('Maximum of objective function: %i' % solver.ObjectiveValue())
     print()
-    print('length value : ', solver.Value(corn))
-    print('width value: ', solver.Value(barley))
+    print('corn value : ', solver.Value(corn))
+    print('barley value: ', solver.Value(barley))
