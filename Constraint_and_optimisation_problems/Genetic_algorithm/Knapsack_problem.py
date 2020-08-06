@@ -58,10 +58,10 @@ def eval_knapsack(individual):
 toolbox.register("evaluate", eval_knapsack)
 toolbox.register("mate", tools.cxTwoPoint)  # crossover operation
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)  # mutation operator
-toolbox.register("select", tools.selTournament, tournsize=3)  # parent selector operator
+toolbox.register("select", tools.selAutomaticEpsilonLexicase)  # parent selector operator
 
 
-if __name__ == "__main__":
+def launch():
     random.seed(64)
 
     # create an initial population of 10 individuals
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     CXPB, MUTPB = 0.5, 0.2
 
     # number of generation
-    num_generations = 20
+    num_generations = 8
 
     # Evaluate the entire population
     fitnesses = list(map(toolbox.evaluate, pop))
@@ -139,5 +139,5 @@ if __name__ == "__main__":
     print("Best individual is %s, %s" % (best_ind, best_ind.fitness.values))
 
 
-
-
+if __name__ == "__main__":
+    launch()
